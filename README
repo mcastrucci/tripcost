@@ -1,0 +1,63 @@
+this REST api works with a mongo DB
+
+Curl commands used to test:
+
+curl -d '{"name": "China 2025"}' -H "Content-Type: application/json" -X POST http://localhost:3000/trip
+---post a new trip ----
+
+curl -X GET http://localhost:3000/trips | json_pp
+---get all trips---
+
+curl -d '{"name": "China 2025"}' -H "Content-Type: application/json" -X POST http://localhost:3000/expense | json_pp
+----gett validation error---
+
+curl -d '{"trip": "5ac5cdf3532808df2e80281e", "date": "20-7-2020", "amount" : "50", "category" : "snacks", "description": "chocolate"}' -H "Content-Type: application/json" -X POST http://localhost:3000/expense | json_pp
+--trip not found---
+
+-----went to mongo to get tripID----
+
+*******************add struff ******************
+curl -d '{"trip": "5f156deaf7427931b46cdc57", "date": "20-7-2020", "amount" : "50", "category" : "snacks", "description": "chocolate"}' -H "Content-Type: application/json" -X POST http://localhost:3000/expense | json_pp
+
+curl -d '{"trip": "5f156deaf7427931b46cdc57", "date": "20-7-2020", "amount" : "5", "category" : "snacks", "description": "Coke"}' -H "Content-Type: application/json" -X POST http://localhost:3000/expense | json_pp
+
+curl -d '{"trip": "5f156deaf7427931b46cdc57", "date": "20-7-2020", "amount" : "10", "category" : "snacks", "description": "Starbucks"}' -H "Content-Type: application/json" -X POST http://localhost:3000/expense | json_pp
+--success add---
+*************************************************
+
+
+curl -X GET http://localhost:3000/expenses | json_pp
+---result: you need to provide a trip id---
+
+curl -d '{"trip" : "5f156deaf7427931b46cdc57"}' -H "Content-Type: application/json" -X GET http://localhost:3000/expenses | json_pp
+
+
+100   486  100   449  100    37  29933   2466 --:--:-- --:--:-- --:--:-- 32400
+{
+   "trips" : [
+      {
+         "_id" : "5f157bbbec1be97f8c8e2699",
+         "amount" : "50",
+         "category" : "snacks",
+         "date" : "20-7-2020",
+         "description" : "chocolate",
+         "trip" : "5f156deaf7427931b46cdc57"
+      },
+      {
+         "_id" : "5f157da4e6d4dd6cfcf66da6",
+         "amount" : "10",
+         "category" : "snacks",
+         "date" : "20-7-2020",
+         "description" : "Starbucks",
+         "trip" : "5f156deaf7427931b46cdc57"
+      },
+      {
+         "_id" : "5f157daae6d4dd6cfcf66da7",
+         "amount" : "5",
+         "category" : "snacks",
+         "date" : "20-7-2020",
+         "description" : "Coke",
+         "trip" : "5f156deaf7427931b46cdc57"
+      }
+   ]
+}

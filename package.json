@@ -1,0 +1,21 @@
+{
+  "name": "tripcost",
+  "version": "1.0.0",
+  "description": "a REST api for trip cost",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rest",
+    "express",
+    "tripcost"
+  ],
+  "author": "mcastrucci",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.5.9"
+  }
+}
